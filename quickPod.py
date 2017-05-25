@@ -29,5 +29,8 @@ while true:
     else:
         podfile.write('  ' + pod)
 
-
 podfile.close()
+
+os.system('pod install')
+os.system('open ' + projectName + '.xcworkspace')
+print('Your pods are installed and the project is ready to use! Make sure to use the project with extension \'.xcworkspace\'')
