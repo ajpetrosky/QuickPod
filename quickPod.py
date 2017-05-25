@@ -11,11 +11,23 @@ while true:
     if setGlobalPlatform == 'y':
         podfile.write('# Project global platform')
         globalPlatform = input('Specify platform: ')
-        podfile.write('platform :' + globalPlatform)
+        podfile.write('platform :' + globalPlatform + '\n')
         break
     elif setGlobalPlatform == 'n':
         break
 
+projectName = os.getcwd().split('/')[-1]
+podfile.write('target ' + projectName + ' do')
+podfile.write('  use_frameworks!')
+podfile.write('\n  # Pods for ' + projectName)
+
+while true:
+    pod = input('Pod name to include in project (type \'x\' if no more pods to add): ')
+    if pod == 'x':
+        podfile.write('end')
+        break
+    else:
+        podfile.write('  ' + pod)
 
 
 podfile.close()
