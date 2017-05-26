@@ -6,28 +6,28 @@ import os
 print('Run this program in the Xcode project folder to create and install the pods.')
 
 podfile = open('Podfile', 'w+')
-while true:
+while True:
     setGlobalPlatform = input('Do you want to set a global platform, i.e. \"ios, \'9.0\'\", \"ios, \'10\'\", etc.? (y/n) ')
     if setGlobalPlatform == 'y':
-        podfile.write('# Project global platform')
+        podfile.write('# Project global platform\n')
         globalPlatform = input('Specify platform: ')
-        podfile.write('platform :' + globalPlatform + '\n')
+        podfile.write('platform :' + globalPlatform + '\n\n')
         break
     elif setGlobalPlatform == 'n':
         break
 
 projectName = os.getcwd().split('/')[-1]
-podfile.write('target ' + projectName + ' do')
-podfile.write('  use_frameworks!')
-podfile.write('\n  # Pods for ' + projectName)
+podfile.write('target \'' + projectName + '\' do\n')
+podfile.write('  use_frameworks!\n')
+podfile.write('  # Pods for ' + projectName)
 
-while true:
+while True:
     pod = input('Pod name to include in project (type \'x\' if no more pods to add): ')
     if pod == 'x':
         podfile.write('end')
         break
     else:
-        podfile.write('  ' + pod)
+        podfile.write('  pod \'' + pod + '\'\n')
 
 podfile.close()
 
